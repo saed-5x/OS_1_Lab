@@ -11,12 +11,13 @@ public class SystemCall {
 
     }
 
-     public int getId() {
+     public int getId(int id) {
         return identifier;
     }
 
     public Object[] getData() {
         return Data;
     }
+
 
 }

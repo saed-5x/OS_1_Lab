@@ -38,20 +38,41 @@ class Core {
     public void runCall(int id) {
 
         try {
+
             call=call_list.get(id);
 
         } catch (Exception e) {
             System.out.println("Something went wrong.");
         }
-        if(!stack.isEmpty()){
+        if(stack.getSize()==0){
             System.out.println("No varablis");
             return;
         }
         if (!call_list.contains(call)) {
-            System.out.println("error");
+            System.out.println("no system call with this id");
             return;
         }
 
+        int stackSize = stack.getSize();
+        Object[] Data = new Object[stackSize];
+        for (int i = 0; i < stackSize; i++) {
+            Data[i] = stack.pop();
+        }
 
+         if (Data.length != call.getData().length) {
+            System.out.println("Error");
+            return;
+        }
+        for (int i = 0; i < Data.length; i++) {
+            if (Data[i]!= call.getData()[i]) {
+                System.out.println("Error");
+                return;
+            }
+        }
+        System.out.println("done with id " + id);
     }
-}
+    }
+
+
+
+

@@ -6,24 +6,29 @@ public class Stack {
     Vector<Object> Vector ;
     private int size = 0;
 
+
     public Stack() {
-       Vector =new Vector<Object>(4);
+       Vector =new Vector<>();
+
+
     }
 
+
     public void push(Object data){
-        Object add = Vector.add(data);
+
+       Vector.add(size,data);
         size++;
     }
 
     public Object pop(){
 
 
-            Object rest = Vector.firstElement();
-        if(!Vector.isEmpty()){
-            Vector.remove(0);
+        Object rest = Vector.firstElement();
+
+            Vector.removeElementAt(0);
             size--;
 
-        }
+
 
         return rest;
 
