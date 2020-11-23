@@ -5,42 +5,33 @@ public class Stack {
 
     Vector<Object> Vector ;
     private int size = 0;
+    private int top;
 
 
     public Stack() {
        Vector =new Vector<>();
-
-
+       top = -1;
     }
 
 
     public void push(Object data){
-
        Vector.add(size,data);
-        size++;
+
+       size++;
+
     }
 
     public Object pop(){
+        Object result = Vector.firstElement();
+        Vector.removeElement(Vector.firstElement());
+        System.out.print("this data remove from stack [  ("+size +")-->"+result+"  ]  \n");
 
-
-        Object rest = Vector.firstElement();
-
-            Vector.removeElementAt(0);
-            size--;
-
-
-
-        return rest;
-
+        size--;
+        return result;
     }
 
     public int getSize() {
         return size;
-    }
-    public boolean isEmpty(){
-        Vector.isEmpty();
-        return true;
-
     }
 
 }

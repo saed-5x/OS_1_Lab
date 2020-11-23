@@ -9,11 +9,11 @@ class Core {
 
     public Core(Stack stack1) {
         call_list = new Vector<>();
-        call_list.add(0, new SystemCall(0, new Object[]{1, "string",1.2}));
-        call_list.add(1, new SystemCall(1, new Object[]{2.5, "string",1}));
-        call_list.add(2, new SystemCall(2, new Object[]{1, 1, 1}));
-        call_list.add(3, new SystemCall(3, new Object[]{1.2,3.2,4.3}));
-        call_list.add(4,new SystemCall(4, new Object[]{"string","string","string"}));
+        call_list.add(0, new SystemCall(0, new Object[]{1, 1, 1}));
+        call_list.add(1, new SystemCall(1, new Object[]{"string", 1.5, "string"}));
+        call_list.add(2, new SystemCall(2, new Object[]{"string", 1 , 1.6}));
+        call_list.add(3, new SystemCall(3, new Object[]{"string", "string","string"}));
+        call_list.add(4,new SystemCall(4, new Object[]{1.2, 1.5, 3.5}));
         stack = stack1;
     }
 
@@ -22,13 +22,11 @@ class Core {
 
         for (int i = 0; i < counter; i++) {
 
-            String str = "";
-
-
+            String str;
             for (int j = 0; j < call_list.get(i).getData().length; j++) {
-                str = call_list.get(i).getData()[j]+" , ";
+                str = call_list.get(i).getData()[j].getClass().getSimpleName() + " < " +call_list.get(i).getData()[j]+" > ";
 
-               System.out.print(str);
+               System.out.print("[ "+str+" ]");
             }
             System.out.println("\n");
         }
@@ -42,11 +40,11 @@ class Core {
             call=call_list.get(id);
 
         } catch (Exception e) {
-            System.out.println("Something went wrong.");
+            System.out.println("Error :there isn't no system call with this id !!!!!");
         }
         if(stack.getSize()==0){
-            System.out.println("No varablis");
-            return;
+            System.out.println("no data in stack");
+            return ;
         }
         if (!call_list.contains(call)) {
             System.out.println("no system call with this id");
@@ -60,12 +58,12 @@ class Core {
         }
 
          if (Data.length != call.getData().length) {
-            System.out.println("Error");
+            System.out.println("Error : no system call with that many arguments");
             return;
         }
         for (int i = 0; i < Data.length; i++) {
-            if (Data[i]!= call.getData()[i]) {
-                System.out.println("Error");
+            if (Data[i].getClass()!= call.getData()[i].getClass()) {
+                System.out.println("Error : There is no system call with this set of arguments.");
                 return;
             }
         }
