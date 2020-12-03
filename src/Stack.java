@@ -1,37 +1,34 @@
 
-import java.util.Vector;
+import java.util.HashMap;
+
 
 public class Stack {
 
-    Vector<Object> Vector ;
-    private int size = 0;
-    private int top;
+    HashMap<Integer,Object> hashMap ;
+
+    private int top = -1;
 
 
     public Stack() {
-       Vector =new Vector<>();
-       top = -1;
+       hashMap =new HashMap<>();
+
     }
 
 
     public void push(Object data){
-       Vector.add(size,data);
-
-       size++;
+        hashMap.put(++top,data);
 
     }
 
     public Object pop(){
-        Object result = Vector.firstElement();
-        Vector.removeElement(Vector.firstElement());
-        System.out.print("this data remove from stack [  ("+size +")-->"+result+"  ]  \n");
 
-        size--;
-        return result;
+        Object result = hashMap.get(top);
+        System.out.print("this data remove from stack [  ("+top +")-->"+result+"  ]  \n");
+       return hashMap.remove(top--);
     }
 
     public int getSize() {
-        return size;
+        return top + 1;
     }
 
 }
